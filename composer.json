@@ -1,11 +1,15 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "pvidal/changelog-dashboard",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The app that would display application changelog updates as a dashboard",
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [{
+        "type": "git",
+        "url": "https://github.com/pauldanielvidal/flywheel"
+    }],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.4.*",
@@ -18,7 +22,8 @@
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "jamesmoss/flywheel": "0.4.*"
     },
     "scripts": {
         "post-install-cmd": [

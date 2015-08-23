@@ -22,13 +22,13 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new PVidal\Bundle\ChangelogDashboardBundle\PVidalChangelogDashboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
 
             $devBundles = array();
 
-            array_push( $devBundles, new Acme\DemoBundle\AcmeDemoBundle() );
             array_push( $devBundles, new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle() );
             array_push( $devBundles, new Sensio\Bundle\DistributionBundle\SensioDistributionBundle() );
             array_push( $devBundles, new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle() );

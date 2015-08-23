@@ -1,0 +1,4 @@
+#services:
+#    flywheel_svc:
+#        class:        PVidal\Bundle\ChangelogDashboardBundle\Entity\Base
+#        arguments:    [@service_container]

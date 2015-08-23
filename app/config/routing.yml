@@ -1,0 +1,5 @@
+p_vidal_changelog_dashboard:
+    resource: "@PVidalChangelogDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

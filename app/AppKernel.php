@@ -25,10 +25,15 @@ class AppKernel extends Kernel
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+
+            $devBundles = array();
+
+            array_push( $devBundles, new Acme\DemoBundle\AcmeDemoBundle() );
+            array_push( $devBundles, new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle() );
+            array_push( $devBundles, new Sensio\Bundle\DistributionBundle\SensioDistributionBundle() );
+            array_push( $devBundles, new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle() );
+
+            $bundles = array_merge( $bundles, $devBundles  );
         }
 
         return $bundles;

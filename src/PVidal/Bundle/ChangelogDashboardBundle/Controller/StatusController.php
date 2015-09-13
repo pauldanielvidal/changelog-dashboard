@@ -30,8 +30,8 @@ class StatusController extends Controller
         return $this->render('PVidalChangelogDashboardBundle:Default:list.html.twig', array(
             'entities' => $entities,
             'columns' => $columns,
-            'createLink' => "/status/new",
-            'type' => "Status",
+            'type' => "status",
+            'label' => "Status",
         ));
     }
 
@@ -64,7 +64,7 @@ class StatusController extends Controller
 
         return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
-            'listLink' => "/status",
+            'type' => "status",
         ));
     }
 
@@ -82,5 +82,38 @@ class StatusController extends Controller
         $em->flush();
 
         return $this->redirect('/status');
+    }
+
+    /**
+     * @Route("/status/update/{id}")
+     */
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $item = $this->getDoctrine()
+            ->getRepository('PVidalChangelogDashboardBundle:Status')
+            ->find($request->get('id'));
+
+        $form = $this->createFormBuilder($item)
+            ->add('description', 'text')
+            ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request->request->get($form->getName()));
+
+            if ($form->isValid()) {
+                $status = $form->getData();
+
+                $em->persist($status);
+                $em->flush();
+
+                return $this->redirect('/status');
+            }
+        }
+
+        return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+            'type' => "status",
+        ));
     }
 }

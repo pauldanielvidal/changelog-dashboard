@@ -10,9 +10,10 @@
             {% for column in columns %}
                 <td>{{ attribute(item,column) }}</td>
             {% endfor %}
-            <td><a href="/status/delete/{{ attribute(item,'id') }}">delete</a></td>
+            <td><a href="/{{ type }}/update/{{ attribute(item,'id') }}">edit</a></td>
+            <td><a href="/{{ type }}/delete/{{ attribute(item,'id') }}">delete</a></td>
         </tr>
     {% endfor %}
 
-    <a href="{{ createLink }}">Add New {{ type   }}</a>
+    <a href="/{{ type }}/new">Add New {{ label }}</a>
 </table>

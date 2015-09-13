@@ -30,8 +30,8 @@ class ApplicationController extends Controller
         return $this->render('PVidalChangelogDashboardBundle:Default:list.html.twig', array(
             'entities' => $entities,
             'columns' => $columns,
-            'createLink' => "/app/new",
-            'type' => "Application",
+            'type' => "app",
+            'label' => "Application",
         ));
     }
 
@@ -64,7 +64,7 @@ class ApplicationController extends Controller
 
         return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
-            'listLink' => "/app",
+            'type' => "/app",
         ));
     }
 
@@ -82,5 +82,38 @@ class ApplicationController extends Controller
         $em->flush();
 
         return $this->redirect('/app');
+    }
+
+    /**
+     * @Route("/app/update/{id}")
+     */
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $item = $this->getDoctrine()
+            ->getRepository('PVidalChangelogDashboardBundle:Application')
+            ->find($request->get('id'));
+
+        $form = $this->createFormBuilder($item)
+            ->add('name', 'text')
+            ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request->request->get($form->getName()));
+
+            if ($form->isValid()) {
+                $application = $form->getData();
+
+                $em->persist($application);
+                $em->flush();
+
+                return $this->redirect('/app');
+            }
+        }
+
+        return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+            'type' => "app",
+        ));
     }
 }

@@ -30,8 +30,8 @@ class EnvironmentController extends Controller
         return $this->render('PVidalChangelogDashboardBundle:Default:list.html.twig', array(
             'entities' => $entities,
             'columns' => $columns,
-            'createLink' => "/env/new",
-            'type' => "Environment",
+            'type' => "env",
+            'label' => "Environment",
         ));
     }
 
@@ -64,7 +64,7 @@ class EnvironmentController extends Controller
 
         return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
-            'listLink' => "/env",
+            'type' => "env",
         ));
     }
 
@@ -82,5 +82,38 @@ class EnvironmentController extends Controller
         $em->flush();
 
         return $this->redirect('/env');
+    }
+
+    /**
+     * @Route("/env/update/{id}")
+     */
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $item = $this->getDoctrine()
+            ->getRepository('PVidalChangelogDashboardBundle:Environment')
+            ->find($request->get('id'));
+
+        $form = $this->createFormBuilder($item)
+            ->add('name', 'text')
+            ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->submit($request->request->get($form->getName()));
+
+            if ($form->isValid()) {
+                $environment = $form->getData();
+
+                $em->persist($environment);
+                $em->flush();
+
+                return $this->redirect('/env');
+            }
+        }
+
+        return $this->render('PVidalChangelogDashboardBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+            'type' => "env",
+        ));
     }
 }

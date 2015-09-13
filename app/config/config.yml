@@ -43,9 +43,10 @@ assetic:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
 # Doctrine Configuration
-#doctrine:
-#    dbal:
-#        driver:   "%database_driver%"
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        path:     "%database_path%"
 #        host:     "%database_host%"
 #        port:     "%database_port%"
 #        dbname:   "%database_name%"
@@ -59,9 +60,9 @@ assetic:
 #        #   3. Uncomment next line:
 #        #     path:     "%database_path%"
 #
-#    orm:
+    orm:
 #        auto_generate_proxy_classes: "%kernel.debug%"
-#        auto_mapping: true
+        auto_mapping: true
 
 # Swiftmailer Configuration
 #swiftmailer:
@@ -70,7 +71,3 @@ assetic:
 #    username:  "%mailer_user%"
 #    password:  "%mailer_password%"
 #    spool:     { type: memory }
-services:
-    flywheel:
-        class:        PVidal\Bundle\ChangelogDashboardBundle\Entity\Base
-        arguments:    [@service_container]

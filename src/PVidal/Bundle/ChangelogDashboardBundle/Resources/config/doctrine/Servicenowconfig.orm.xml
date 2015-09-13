@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PVidal\Bundle\ChangelogDashboardBundle\Entity\Servicenowconfig" table="ServiceNowConfig">
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="applicationid" type="integer" column="ApplicationID" nullable="false"/>
+    <field name="businessservice" type="text" column="BusinessService" nullable="true"/>
+    <field name="category" type="text" column="Category" nullable="true"/>
+    <field name="subcategory" type="text" column="Subcategory" nullable="true"/>
+    <field name="configurationitem" type="text" column="ConfigurationItem" nullable="true"/>
+  </entity>
+</doctrine-mapping>

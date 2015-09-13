@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PVidal\Bundle\ChangelogDashboardBundle\Entity\Changelog" table="ChangeLog">
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="applicationid" type="blob" column="ApplicationID" nullable="false"/>
+    <field name="environmentid" type="integer" column="EnvironmentID" nullable="false"/>
+    <field name="description" type="text" column="Description" nullable="false"/>
+    <field name="version" type="text" column="Version" nullable="true"/>
+    <field name="dateofdeployment" type="text" column="DateOfDeployment" nullable="false"/>
+    <field name="dateentered" type="text" column="DateEntered" nullable="false"/>
+    <field name="statusid" type="integer" column="StatusID" nullable="false"/>
+    <field name="comments" type="text" column="Comments" nullable="true"/>
+    <field name="servicenowticket" type="text" column="ServiceNowTicket" nullable="true"/>
+  </entity>
+</doctrine-mapping>

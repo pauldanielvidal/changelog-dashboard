@@ -1,0 +1,18 @@
+<table border="1">
+    <tr>
+        {% for column in columns %}
+            <th>{{ column }}</th>
+        {% endfor %}
+        <th>remove?</th>
+    </tr>
+    {% for id, item in entities %}
+        <tr>
+            {% for column in columns %}
+                <td>{{ attribute(item,column) }}</td>
+            {% endfor %}
+            <td><a href="/status/delete/{{ attribute(item,'id') }}">delete</a></td>
+        </tr>
+    {% endfor %}
+
+    <a href="{{ createLink }}">Add New {{ type   }}</a>
+</table>
